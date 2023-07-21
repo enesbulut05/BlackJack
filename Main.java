@@ -119,18 +119,6 @@ public class Main {
 				kasa.kasaOynat();
 				kasa.kasaKartlariniGoster(kasa.getKasaKartlari());
 
-				/*
-				 * for (Oyuncu oyuncu : oyuncular) { int skorOyuncu = 0; if
-				 * (oyuncu.oyuncuHesapla().contains("yada")) { String sonuc =
-				 * oyuncu.oyuncuHesapla(); String[] parcalar = sonuc.split(" "); String
-				 * ikinciSayi = parcalar[2]; skorOyuncu = Integer.parseInt(ikinciSayi); } else {
-				 * skorOyuncu = Integer.parseInt(oyuncu.oyuncuHesapla()); }
-				 * 
-				 * int skorKasa = Integer.parseInt(kasa.kasaHesapla());
-				 * 
-				 * }
-				 */
-
 				// KAZANAN KAYBEDEN
 
 				int z = 0;
@@ -310,14 +298,7 @@ public class Main {
 			System.out.println("Set 2 : " + oyuncu.getBolunenOyuncuKartlari2() + " Toplam Değer : "
 					+ oyuncu.oyuncuSetleriniHesapla(oyuncu.getBolunenOyuncuKartlari2()));
 			for (int i = 1; i <= 2; i++) { // iki kere yazdırıyorsa sorun burada.
-				/*
-				 * if (i == 1) { System.out.println(i + ". set = " +
-				 * oyuncu.getBolunenOyuncuKartlari1() + " Toplam Değer : " +
-				 * oyuncu.oyuncuSetleriniHesapla(oyuncu.getBolunenOyuncuKartlari1())); } if (i
-				 * == 2) { System.out.println(i + ". set = " +
-				 * oyuncu.getBolunenOyuncuKartlari2() + " Toplam Değer : " +
-				 * oyuncu.oyuncuSetleriniHesapla(oyuncu.getBolunenOyuncuKartlari2())); }
-				 */
+
 				System.out.println(i + ". setiniz için seçin : PAS / KART");
 				String secim2 = scanner.nextLine();
 				if (secim2.equals("pas") || secim2.equals("PAS")) {
@@ -362,7 +343,7 @@ public class Main {
 					}
 				}
 			}
-		} // if seçim == bölün bitişi.
+		}
 
 		else if (secim.equals("kart") || secim.equals("KART")) {
 			kart.kartCek();
