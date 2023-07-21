@@ -11,12 +11,10 @@ public class Main {
 	static Kart kart = new Kart();
 
 	public static void main(String[] args) throws IOException {
-		double bakiyeMiktari[] = { 500, 500, 500, 500, 500, 500, 500 }; // burasi array olmalı. Başlangıç aynı olabilir
-																		// sonra değişecek.
-		double bahis = 50;
+		double bakiyeMiktari[] = { 500, 500, 500, 500, 500, 500, 500 }; // burasi array olmalı. Başlangıç aynı olabilir																		// sonra değişecek.
+		double bahis = 50; 
 
-		boolean yeni = true;
-
+		boolean yeni = true; // yeni oyuna basıldığında yeni = true olup iç döngüden çıkacak.
 		while (yeni == true) {
 			yeni = false;
 
@@ -38,7 +36,6 @@ public class Main {
 			for (int i = 0; i < oyuncuSayisi; i++) {
 				System.out.println("Lütfen " + (i + 1) + ". Oyuncunun adını girin.");
 				oyuncuAdlari[i] = scanner.nextLine();
-
 			}
 
 			while (true) {
@@ -63,7 +60,7 @@ public class Main {
 							oyuncu.paraCek(oyuncu.getBahis());
 							break;
 						}
-						oyuncu.paraCek((oyuncu.getBahis() / 2)); // bölü 2: iki kere döndüğümüzden dolayı.
+						oyuncu.paraCek((oyuncu.getBahis() / 2));
 						kart.kartCek();
 						oyuncu.ekleOyuncuKartlari(kart.getCekilenKart());
 					}
@@ -109,7 +106,7 @@ public class Main {
 					}
 				}
 
-				// Oyun Sonucu
+				// Oyuncuların ve Kasanın Kartlarını Göster
 				for (Oyuncu oyuncu : oyuncular) {
 
 					oyuncu.oyuncuKartlariniGosterSon(oyuncu.getOyuncuKartlari());
@@ -132,6 +129,7 @@ public class Main {
 					z++;
 				}
 
+				// Tur Bitti.
 				System.out.println(
 						"Çıkmak için 'kapat' yazın. Devam etmek için herhangi bir tuşa basın. Yeni deste için 'deste' yazın. Yeni Oyun için yeni yazın.");
 				String secim = scanner.nextLine();
@@ -297,13 +295,11 @@ public class Main {
 					+ " Toplam Değer : " + oyuncu.oyuncuSetleriniHesapla(oyuncu.getBolunenOyuncuKartlari1()));
 			System.out.println("Set 2 : " + oyuncu.getBolunenOyuncuKartlari2() + " Toplam Değer : "
 					+ oyuncu.oyuncuSetleriniHesapla(oyuncu.getBolunenOyuncuKartlari2()));
-			for (int i = 1; i <= 2; i++) { // iki kere yazdırıyorsa sorun burada.
-
+			for (int i = 1; i <= 2; i++) {
 				System.out.println(i + ". setiniz için seçin : PAS / KART");
 				String secim2 = scanner.nextLine();
 				if (secim2.equals("pas") || secim2.equals("PAS")) {
 					oyuncu.setBolunenSetPasaBastiMi(true, (i - 1));
-					// break; Sorun burda olabilir.
 				} else if (secim2.equals("kart") || secim2.equals("KART")) {
 					kart.kartCek();
 					kart.cekilenKartiYazdir();
@@ -343,7 +339,7 @@ public class Main {
 					}
 				}
 			}
-		}
+		} 
 
 		else if (secim.equals("kart") || secim.equals("KART")) {
 			kart.kartCek();
@@ -355,7 +351,6 @@ public class Main {
 		}
 		try {
 			if (Integer.parseInt(oyuncu.oyuncuHesapla()) > 21 && (oyuncu.isOyuncuBoleBastiMi() == false)) {
-				// oyuncu.oyuncuKartlariniGoster(oyuncu.getOyuncuKartlari());
 				System.out.print(" PATLADIN :) \n");
 				oyuncu.setOyuncuPasDediMi(true);
 
@@ -365,7 +360,6 @@ public class Main {
 			String[] parcalar = test.split(" ");
 			if (Integer.parseInt(parcalar[0]) > 21 && Integer.parseInt(parcalar[2]) > 21
 					&& (oyuncu.isOyuncuBoleBastiMi() == false)) {
-				// oyuncu.oyuncuKartlariniGoster(oyuncu.getOyuncuKartlari());
 				System.out.print(" PATLADIN :) \n");
 				oyuncu.setOyuncuPasDediMi(true);
 
@@ -376,11 +370,10 @@ public class Main {
 	public static void oyuncuyaSoruSor(Oyuncu oyuncu) throws IOException {
 		Scanner scanner = new Scanner(System.in);
 
+		// ?? Gereksiz ama zararı yok
 		try {
 			if (Integer.parseInt(oyuncu.oyuncuHesapla()) > 21) {
-
 				oyuncu.setOyuncuPasDediMi(true);
-
 			}
 		} catch (Exception e) {
 
@@ -403,7 +396,7 @@ public class Main {
 					}
 
 					if (secim2.equals("pas") || secim2.equals("PAS")) {
-						oyuncu.setBolunenSetPasaBastiMi(true, (i - 1)); // buraya baaak
+						oyuncu.setBolunenSetPasaBastiMi(true, (i - 1)); 
 						break;
 					} else if (secim2.equals("kart") || secim2.equals("KART")) {
 						kart.kartCek();
@@ -466,11 +459,8 @@ public class Main {
 			}
 			try {
 				if (Integer.parseInt(oyuncu.oyuncuHesapla()) > 21 && (oyuncu.isOyuncuBoleBastiMi() == false)) {
-					// oyuncu.oyuncuKartlariniGoster(oyuncu.getOyuncuKartlari());
 					System.out.print(" PATLADIN :) \n");
-
 					oyuncu.setOyuncuPasDediMi(true);
-
 				}
 			} catch (Exception e) {
 
