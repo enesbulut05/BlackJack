@@ -15,7 +15,7 @@ public class Main {
 		// // sonra değişecek.
 		double bahis = 50;
 
-		boolean yeni = true; // yeni oyuna basıldığında yeni = true olup iç döngüden çıkacak.
+		boolean yeni = true; // yeni oyuna basıldığında yeni = true olup iç döngüden çıkacak. Oyundan cıkmak istendiğinde yeni = false olup iç döngüden çıkılacak.
 		while (yeni == true) {
 			yeni = false;
 
