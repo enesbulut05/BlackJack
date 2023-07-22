@@ -141,20 +141,15 @@ public class Oyuncu {
 				toplam1 += 10;
 				toplam2 += 10;
 			} else if (bolunenOyuncuKartlari.get(i).equals("A")) {
+				
+				if (toplam.contains("yada")) {
+					toplam1 += 1;
+					toplam2 = toplam1 + 10;
 
-				try {
-					if (bolunenOyuncuKartlari.get(i - 1) == "A") {
-						toplam1 += 1;
-						toplam2 += 1;
-						break;
-					}
-
-				} catch (Exception e) {
-
+				} else {
+					toplam1 += 1;
+					toplam2 += 11;
 				}
-				toplam1 += 1;
-				toplam2 += 11;
-
 			}
 			try {
 				int sayi = Integer.parseInt(bolunenOyuncuKartlari.get(i));
@@ -185,7 +180,7 @@ public class Oyuncu {
 	}
 
 	public String oyuncuHesapla() {
-		String toplam = null;
+		String toplam = "";
 		int toplam1 = 0;
 		int toplam2 = 0;
 
@@ -196,9 +191,14 @@ public class Oyuncu {
 				toplam1 += 10;
 				toplam2 += 10;
 			} else if (oyuncuKartlari.get(i).equals("A")) {
+				if (toplam.contains("yada")) {
+					toplam1 += 1;
+					toplam2 = toplam1 + 10;
 
-				toplam1 += 1;
-				toplam2 += 11;
+				} else {
+					toplam1 += 1;
+					toplam2 += 11;
+				}
 
 			}
 			try {
