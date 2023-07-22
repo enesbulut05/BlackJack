@@ -11,8 +11,8 @@ public class Main {
 	static Kart kart = new Kart();
 
 	public static void main(String[] args) throws IOException {
-		double bakiyeMiktari[] = { 500, 500, 500, 500, 500, 500, 500 }; // burasi array olmalı. Başlangıç aynı olabilir
-																	// // sonra değişecek.
+		double bakiyeMiktari[] = { 500, 50, 500, 500, 500, 500, 500 }; // burasi array olmalı. Başlangıç aynı olabilir
+		// // sonra değişecek.
 		double bahis = 50;
 
 		boolean yeni = true; // yeni oyuna basıldığında yeni = true olup iç döngüden çıkacak.
@@ -61,17 +61,13 @@ public class Main {
 				// Kart dağıt
 				for (int i = 0; i < 2; i++) {
 					for (Oyuncu oyuncu : oyuncular) {
-						if (oyuncu.getBakiye() < oyuncu.getBahis()) {
-							oyuncu.paraCek(oyuncu.getBahis());
-							oyuncu.setOyuncuPasDediMi(true);
-							break;
-						} else {
-							if (i == 1) {
-								oyuncu.paraCek((oyuncu.getBahis()));
-							}
-							kart.kartCek();
-							oyuncu.ekleOyuncuKartlari(kart.getCekilenKart());
+
+						if (i == 1) {
+							oyuncu.paraCek((oyuncu.getBahis()));
 						}
+						kart.kartCek();
+						oyuncu.ekleOyuncuKartlari(kart.getCekilenKart());
+
 					}
 					kart.kartCek();
 					kasa.ekleKasaKartlari(kart.getCekilenKart());
