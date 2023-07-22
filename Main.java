@@ -11,7 +11,7 @@ public class Main {
 	static Kart kart = new Kart();
 
 	public static void main(String[] args) throws IOException {
-		double bakiyeMiktari[] = { 500, 50, 500, 500, 500, 500, 500 }; // burasi array olmalı. Başlangıç aynı olabilir
+		double bakiyeMiktari[] = { 500, 500, 500, 500, 500, 500, 500 }; // burasi array olmalı. Başlangıç aynı olabilir
 		// // sonra değişecek.
 		double bahis = 50;
 
