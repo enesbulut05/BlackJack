@@ -11,8 +11,9 @@ public class Main {
 	static Kart kart = new Kart();
 
 	public static void main(String[] args) throws IOException {
-		double bakiyeMiktari[] = { 500, 500, 500, 500, 500, 500, 500 }; // burasi array olmalı. Başlangıç aynı olabilir																		// sonra değişecek.
-		double bahis = 50; 
+		double bakiyeMiktari[] = { 500, 50, 500, 500, 500, 500, 500 }; // burasi array olmalı. Başlangıç aynı olabilir
+																		// // sonra değişecek.
+		double bahis = 50;
 
 		boolean yeni = true; // yeni oyuna basıldığında yeni = true olup iç döngüden çıkacak.
 		while (yeni == true) {
@@ -42,9 +43,13 @@ public class Main {
 				Kasa kasa = new Kasa();
 				List<Oyuncu> oyuncular = new ArrayList<>();
 				for (int i = 0; i < oyuncuSayisi; i++) {
-					Oyuncu oyuncu = new Oyuncu(oyuncuAdlari[i], bakiyeMiktari[i], (i + 1));
-					oyuncu.setBahis(bahis);
-					oyuncular.add(oyuncu);
+					if (bakiyeMiktari[i] >= bahis) {
+						Oyuncu oyuncu = new Oyuncu(oyuncuAdlari[i], bakiyeMiktari[i], (i + 1));
+						oyuncu.setBahis(bahis);
+						oyuncular.add(oyuncu);
+					} else {
+						System.out.println(oyuncuAdlari[i] + " Yetersiz Bakiye Sebeyile Oyuna Dahil Edilmedi.");
+					}
 				}
 
 				// Oluşturulan oyuncuların isimlerini yazdır.
@@ -58,11 +63,15 @@ public class Main {
 					for (Oyuncu oyuncu : oyuncular) {
 						if (oyuncu.getBakiye() < oyuncu.getBahis()) {
 							oyuncu.paraCek(oyuncu.getBahis());
+							oyuncu.setOyuncuPasDediMi(true);
 							break;
+						} else {
+							if (i == 1) {
+								oyuncu.paraCek((oyuncu.getBahis()));
+							}
+							kart.kartCek();
+							oyuncu.ekleOyuncuKartlari(kart.getCekilenKart());
 						}
-						oyuncu.paraCek((oyuncu.getBahis() / 2));
-						kart.kartCek();
-						oyuncu.ekleOyuncuKartlari(kart.getCekilenKart());
 					}
 					kart.kartCek();
 					kasa.ekleKasaKartlari(kart.getCekilenKart());
@@ -80,6 +89,7 @@ public class Main {
 
 				while (herkesPasaBastiMi == false) {
 					for (Oyuncu oyuncu : oyuncular) {
+
 						if (oyuncu.isBolunenOyuncuHepsindePasaBastiMi() == true) {
 							oyuncu.setOyuncuPasDediMi(true);
 						}
@@ -99,7 +109,7 @@ public class Main {
 
 							if (pasKontrol[i] == true) {
 								pasSayaci++;
-								if (pasSayaci == oyuncuSayisi)
+								if (pasSayaci == oyuncular.size())
 									herkesPasaBastiMi = true;
 							}
 						}
@@ -108,10 +118,9 @@ public class Main {
 
 				// Oyuncuların ve Kasanın Kartlarını Göster
 				for (Oyuncu oyuncu : oyuncular) {
-
 					oyuncu.oyuncuKartlariniGosterSon(oyuncu.getOyuncuKartlari());
-
 				}
+
 				System.out.println("Kasa Oynuyor...");
 				kasa.kasaOynat();
 				kasa.kasaKartlariniGoster(kasa.getKasaKartlari());
@@ -264,7 +273,7 @@ public class Main {
 
 		if (secim.equals("2x") || secim.equals("2X")) {
 			if (oyuncu.getBakiye() < oyuncu.getBahis()) {
-				oyuncu.paraCek(oyuncu.getBahis());
+				System.out.println("Bakiyeniz 2x Bahis İçin Yetesiz. \nLütfen seçiniz. PAS / KART ");
 			} else {
 				oyuncu.setOyuncu2XeBastiMi(true);
 				oyuncu.paraCek(oyuncu.getBahis());
@@ -274,8 +283,8 @@ public class Main {
 				} else {
 					System.out.println(oyuncu.getAd() + " Bahis 2ye katlandı. Lütfen seçiniz. PAS / KART ");
 				}
-				secim = scanner.nextLine();
 			}
+			secim = scanner.nextLine();
 
 		}
 		if ((secim.equals("böl") || secim.equals("bol") || secim.equals("BOL") || secim.equals("BÖL")
@@ -339,7 +348,7 @@ public class Main {
 					}
 				}
 			}
-		} 
+		}
 
 		else if (secim.equals("kart") || secim.equals("KART")) {
 			kart.kartCek();
@@ -396,7 +405,7 @@ public class Main {
 					}
 
 					if (secim2.equals("pas") || secim2.equals("PAS")) {
-						oyuncu.setBolunenSetPasaBastiMi(true, (i - 1)); 
+						oyuncu.setBolunenSetPasaBastiMi(true, (i - 1));
 						break;
 					} else if (secim2.equals("kart") || secim2.equals("KART")) {
 						kart.kartCek();
